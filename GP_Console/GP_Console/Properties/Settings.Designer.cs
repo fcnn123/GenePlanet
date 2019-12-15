@@ -70,5 +70,17 @@ namespace GP_Console.Properties {
                 this["log_mode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public string sync_minutes {
+            get {
+                return ((string)(this["sync_minutes"]));
+            }
+            set {
+                this["sync_minutes"] = value;
+            }
+        }
     }
 }

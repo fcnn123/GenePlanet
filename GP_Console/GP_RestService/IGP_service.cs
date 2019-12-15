@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GP_Dal.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -13,6 +14,6 @@ namespace GP_RestService
     {
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "/AggData/{username}/{param}/")]
-        string GetAggData(string username, string param);
+        AggData GetAggData(string username, string param);
     }
 }

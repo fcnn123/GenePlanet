@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{60E4F62C-2C4C-4E65-84BA-AA0EC0938DC9}</ProjectGuid>
+    <ProjectGuid>{5F430BF8-C3CF-4C6F-B4EA-3F553420C8DB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GP_ConsoleTests</RootNamespace>
-    <AssemblyName>GP_ConsoleTests</AssemblyName>
+    <RootNamespace>GP_DalTests</RootNamespace>
+    <AssemblyName>GP_DalTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -56,17 +56,13 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="ProgramTests.cs" />
+    <Compile Include="DalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GP_Console\GP_Console.csproj">
-      <Project>{CBC8ED85-CCA2-4F5D-B4A3-E52A22F775E2}</Project>
-      <Name>GP_Console</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GP_Dal\GP_Dal.csproj">
       <Project>{68C61387-15C7-41B0-8F7B-82EB3AFD05E5}</Project>
       <Name>GP_Dal</Name>

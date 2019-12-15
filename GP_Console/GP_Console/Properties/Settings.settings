@@ -14,5 +14,8 @@
     <Setting Name="log_mode" Type="System.String" Scope="User">
       <Value Profile="(Default)">console</Value>
     </Setting>
+    <Setting Name="sync_minutes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

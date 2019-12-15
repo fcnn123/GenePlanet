@@ -47,5 +47,11 @@
     <Compile Include="IGP_service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GP_Dal\GP_Dal.csproj">
+      <Project>{68c61387-15c7-41b0-8f7b-82eb3afd05e5}</Project>
+      <Name>GP_Dal</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

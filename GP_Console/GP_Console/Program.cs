@@ -1,4 +1,5 @@
-﻿using GP_Dal.Models;
+﻿using GP_Dal;
+using GP_Dal.Models;
 using GP_RestService;
 using Newtonsoft.Json;
 using System;
@@ -15,10 +16,11 @@ namespace GP_Console
 {
     public class Program
     {
+
         private static Logger _logger;
 
         static void Main(string[] args)
-        {            
+        {
             if (Properties.Settings.Default.log_mode == "eventlog")
             {
                 _logger = new Logger(Logger.LogMode.eventlog);
@@ -34,16 +36,16 @@ namespace GP_Console
             {
                 host.Open();
 
-                Console.WriteLine("The service is ready at {0}AggData/{1}/{1}", baseAddress, "{username}", "{param}");
+                Console.WriteLine("The service is ready at {0}AggData/{1}/{2}", baseAddress, "{username}", "{param}");
                 Console.WriteLine("Parameter {0} is unique user identifier.", "{username}");
                 Console.WriteLine("Possible values for parameter {0} are \"all\",\"min\" or \"max\"", "{param}");
                 Console.WriteLine("Press <Enter> to stop the service.");
 
-                using (Timer t = new Timer(5000))
+                int ms = Convert.ToInt32(Properties.Settings.Default.sync_minutes) * 60 * 1000;
+                using (Timer t = new Timer(ms))
                 {
                     t.Elapsed += DoMetricSyncHandler;
-                    t.Start();
-                    //DoMetricSync();
+                    t.Start();                    
 
                     Console.ReadLine();
                 }
@@ -64,23 +66,53 @@ namespace GP_Console
             string username = Properties.Settings.Default.username;
             string shimmer_host = Properties.Settings.Default.shimmer_host;
 
-            _logger.Log(string.Format("Sync started for username \"{0}\"", username));            
+            _logger.Log(string.Format("Sync started for username \"{0}\"", username));
 
-            float[] minmax = await GetOnlineData(username, shimmer_host, _logger);
+            Dal dal = new Dal();
+            AggData aggData = dal.GetAggregateData(Dal.AggMode.all, username);
 
-            _logger.Log(string.Format("Sync completed for username \"{0}\"", username));
+            float[] minmax = await GetOnlineData(aggData, username, shimmer_host, _logger);
+
+            float min = minmax[0];
+            float max = minmax[1];
+            try
+            {
+                if (aggData == null)
+                    dal.SaveAggregateData(new GP_Dal.Models.AggData { UserName = username, Min = min == float.MaxValue ? new float?() : min, Max = max == float.MinValue ? new float?() : max, LastSync = DateTime.Now });
+                else
+                {
+                    aggData.Max = float.MinValue;
+                    aggData.Min = min == float.MaxValue ? new float?() : min;
+                    aggData.Max = max == float.MinValue ? new float?() : max;
+                    aggData.LastSync = DateTime.Now;
+                    dal.SaveAggregateData(aggData);
+                }
+
+                _logger.Log(string.Format("Sync completed for username \"{0}\"", username));
+            }
+            catch (Exception e)
+            {
+                _logger.Log(string.Format("Error on save for username \"{0}\": {1}", username, e.Message), EventLogEntryType.Error);
+            }
+
         }
 
-        public static async Task<float[]> GetOnlineData(string username, string shimmer_host, Logger logger)
+        public static async Task<float[]> GetOnlineData(AggData aggData, string username, string shimmer_host, Logger logger)
         {
             string[] shims = new string[] { "fitbit", "ihealth" };
 
-            MHealth_body_weight mHealth;
+            MHealth_body_weight mHealth = null;
             float min = float.MaxValue;
             float max = float.MinValue;
 
             using (var client = new HttpClient())
             {
+                if (aggData != null)
+                {
+                    min = aggData.Min.Value;
+                    max = aggData.Max.Value;
+                }
+
                 DateTime t = DateTime.Today;
                 foreach (var shim in shims)
                 {
@@ -121,6 +153,8 @@ namespace GP_Console
 
             return new float[] { min, max };
         }
+
+
     }
 
     public class Logger
