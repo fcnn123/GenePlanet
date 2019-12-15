@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GP_ConsoleTests", "GP_Conso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GP_DalTests", "GP_DalTests\GP_DalTests.csproj", "{5F430BF8-C3CF-4C6F-B4EA-3F553420C8DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GP_RestServiceTests", "GP_RestServiceTests\GP_RestServiceTests.csproj", "{30F16D5E-C837-4BD3-B30C-F8F49A3A1D0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5F430BF8-C3CF-4C6F-B4EA-3F553420C8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F430BF8-C3CF-4C6F-B4EA-3F553420C8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F430BF8-C3CF-4C6F-B4EA-3F553420C8DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30F16D5E-C837-4BD3-B30C-F8F49A3A1D0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30F16D5E-C837-4BD3-B30C-F8F49A3A1D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30F16D5E-C837-4BD3-B30C-F8F49A3A1D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30F16D5E-C837-4BD3-B30C-F8F49A3A1D0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
