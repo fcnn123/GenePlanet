@@ -34,5 +34,41 @@ namespace GP_Console.Properties {
                 this["localhost_port"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("localhost:8083")]
+        public string shimmer_host {
+            get {
+                return ((string)(this["shimmer_host"]));
+            }
+            set {
+                this["shimmer_host"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7YQRY6")]
+        public string username {
+            get {
+                return ((string)(this["username"]));
+            }
+            set {
+                this["username"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("console")]
+        public string log_mode {
+            get {
+                return ((string)(this["log_mode"]));
+            }
+            set {
+                this["log_mode"] = value;
+            }
+        }
     }
 }

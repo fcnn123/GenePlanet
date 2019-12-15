@@ -5,5 +5,14 @@
     <Setting Name="localhost_port" Type="System.String" Scope="User">
       <Value Profile="(Default)">8080</Value>
     </Setting>
+    <Setting Name="shimmer_host" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost:8083</Value>
+    </Setting>
+    <Setting Name="username" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7YQRY6</Value>
+    </Setting>
+    <Setting Name="log_mode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">console</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
